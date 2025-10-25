@@ -1,0 +1,29 @@
+# Editor & OS files
+.DS_Store
+.idea/
+.vscode/
+
+# Local environment
+.env
+.env.local
+
+# Drupal private local settings
+web/sites/default/settings.local.php
+web/sites/default/services.local.yml
+
+# File uploads (never version these)
+web/sites/default/files/
+web/sites/default/files/**
+
+# Composer artifacts
+# (We **DO** commit vendor in Drupal recommended-project deployments)
+# If you *choose* NOT to commit vendor, uncomment the next line:
+/vendor/
+
+# Node / build artifacts (if you add themes later)
+node_modules/
+npm-debug.log
+yarn-error.log
+
+# Sass / Gulp / build cache
+*.map
