@@ -1,0 +1,6 @@
+id: sdc_shoelace:button
+label: "UI Button"
+props:
+  label:
+    type: string
+    default: "Click Me"

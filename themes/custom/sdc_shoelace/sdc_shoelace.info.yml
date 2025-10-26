@@ -1,0 +1,12 @@
+name: "SDC Shoelace Theme"
+type: theme
+description: "A clean Drupal theme using Shoelace Web Components + SDC"
+core_version_requirement: ^10 || ^11
+base theme: stable9
+
+libraries:
+  - sdc_shoelace/global
+
+components:
+  paths:
+    - components
