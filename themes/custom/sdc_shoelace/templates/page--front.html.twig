@@ -315,15 +315,14 @@
 
   <div class="layout-with-sidebar">
     
-    {# Sidebar with Menu #}
+    {# Sidebar with Menu - Direct menu without drawer #}
     <aside class="sidebar">
-      {% include 'sdc_shoelace:drawer' with {
-        label: 'Main Navigation',
-        placement: 'start',
-        open: true,
-        contained: true,
-        content: sidebar_menu
-      } %}
+      <div class="sidebar-header">
+        <h3>Navigation</h3>
+      </div>
+      <div class="sidebar-content">
+        {{ sidebar_menu }}
+      </div>
     </aside>
 
     {# Main Content #}
@@ -336,4 +335,4 @@
     </main>
   </div>
 </div>
- 
+

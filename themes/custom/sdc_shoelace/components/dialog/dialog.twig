@@ -3,11 +3,11 @@
   {% if open %}open{% endif %}
   {% if no_header %}no-header{% endif %}
 >
-  {{ content }}
+  {{ content|raw }}
   
   {% if slots.footer %}
     <div slot="footer">
-      {{ slots.footer }}
+      {{ slots.footer|raw }}
     </div>
   {% endif %}
 </sl-dialog>

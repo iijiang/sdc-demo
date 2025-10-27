@@ -1,21 +1,21 @@
 <sl-card>
   {% if slots.image %}
     <div slot="image">
-      {{ slots.image }}
+      {{ slots.image|raw }}
     </div>
   {% endif %}
   
   {% if slots.header or header %}
     <div slot="header">
-      {{ slots.header|default(header) }}
+      {{ slots.header|default(header)|raw }}
     </div>
   {% endif %}
   
-  {{ content }}
+  {{ content|raw }}
   
   {% if slots.footer or footer %}
     <div slot="footer">
-      {{ slots.footer|default(footer) }}
+      {{ slots.footer|default(footer)|raw }}
     </div>
   {% endif %}
 </sl-card>

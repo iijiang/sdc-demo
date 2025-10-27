@@ -42,6 +42,26 @@ body {
   flex-shrink: 0;
 }
 
+.sidebar-header {
+  padding: 1.5rem 1rem;
+  border-bottom: 1px solid var(--sl-color-neutral-200);
+}
+
+.sidebar-header h3 {
+  margin: 0;
+  font-size: 1.125rem;
+  font-weight: 600;
+}
+
+.sidebar-content {
+  padding: 1rem;
+}
+
+.sidebar {
+  overflow-y: auto;
+  height: calc(100vh - 60px);
+}
+
 /* Main Content */
 .layout-main,
 .main-content {
