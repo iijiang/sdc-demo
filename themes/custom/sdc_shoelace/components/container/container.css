@@ -1,0 +1,28 @@
+.container {
+  margin: 0 auto;
+  width: 100%;
+}
+
+.container--fixed {
+  max-width: 1400px;
+}
+
+.container--fluid {
+  max-width: 100%;
+}
+
+.container--padding-none {
+  padding: 0;
+}
+
+.container--padding-small {
+  padding: 0.5rem;
+}
+
+.container--padding-medium {
+  padding: 1rem;
+}
+
+.container--padding-large {
+  padding: 2rem;
+}

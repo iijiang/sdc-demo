@@ -1,0 +1,23 @@
+id: sdc_shoelace:drawer
+label: "Drawer/Sidebar"
+props:
+  label:
+    type: string
+    default: "Navigation"
+  placement:
+    type: string
+    enum:
+      - start
+      - end
+      - top
+      - bottom
+    default: "start"
+  open:
+    type: boolean
+    default: false
+  contained:
+    type: boolean
+    default: false
+slots:
+  content:
+    title: "Drawer Content"

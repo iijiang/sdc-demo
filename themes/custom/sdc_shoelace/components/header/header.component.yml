@@ -1,0 +1,14 @@
+id: sdc_shoelace:header
+label: "Page Header"
+props:
+  site_name:
+    type: string
+    default: "Site Name"
+  show_nav_icon:
+    type: boolean
+    default: true
+slots:
+  nav_icon:
+    title: "Navigation Icon"
+  actions:
+    title: "Header Actions"

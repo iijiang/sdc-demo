@@ -1,0 +1,28 @@
+.site-header {
+  background: var(--sl-color-neutral-0);
+  border-bottom: 1px solid var(--sl-color-neutral-200);
+  padding: 1rem;
+}
+
+.header-container {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  max-width: 1400px;
+  margin: 0 auto;
+}
+
+.header-branding {
+  flex: 1;
+}
+
+.site-name {
+  margin: 0;
+  font-size: 1.5rem;
+}
+
+.header-actions {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+}

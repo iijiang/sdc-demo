@@ -1,0 +1,6 @@
+id: sdc_shoelace:breadcrumb
+label: "Breadcrumb"
+props:
+  items:
+    type: array
+    title: "Breadcrumb Items"

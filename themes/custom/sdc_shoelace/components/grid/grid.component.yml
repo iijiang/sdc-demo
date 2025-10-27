@@ -1,0 +1,19 @@
+id: sdc_shoelace:grid
+label: "Grid Layout"
+props:
+  columns:
+    type: number
+    default: 3
+  gap:
+    type: string
+    enum:
+      - small
+      - medium
+      - large
+    default: "medium"
+  responsive:
+    type: boolean
+    default: true
+slots:
+  content:
+    title: "Grid Items"

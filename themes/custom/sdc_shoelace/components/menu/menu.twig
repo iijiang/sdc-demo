@@ -1,0 +1,36 @@
+{% if variant == 'tree' %}
+  <sl-tree>
+    {% for item in items %}
+      <sl-tree-item {% if item.expanded %}expanded{% endif %}>
+        {% if item.icon %}
+          <sl-icon name="{{ item.icon }}" slot="prefix"></sl-icon>
+        {% endif %}
+        {{ item.label }}
+        {% if item.children %}
+          {% for child in item.children %}
+            <sl-tree-item>
+              {% if child.icon %}
+                <sl-icon name="{{ child.icon }}" slot="prefix"></sl-icon>
+              {% endif %}
+              {{ child.label }}
+            </sl-tree-item>
+          {% endfor %}
+        {% endif %}
+      </sl-tree-item>
+    {% endfor %}
+  </sl-tree>
+{% else %}
+  <sl-menu>
+    {% for item in items %}
+      <sl-menu-item {% if item.href %}href="{{ item.href }}"{% endif %}>
+        {% if item.icon %}
+          <sl-icon slot="prefix" name="{{ item.icon }}"></sl-icon>
+        {% endif %}
+        {{ item.label }}
+      </sl-menu-item>
+      {% if item.divider %}
+        <sl-divider></sl-divider>
+      {% endif %}
+    {% endfor %}
+  </sl-menu>
+{% endif %}

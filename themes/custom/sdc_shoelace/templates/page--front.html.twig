@@ -1,0 +1,339 @@
+{#
+/**
+ * @file
+ * Front page template with full Shoelace component showcase.
+ */
+#}
+
+{# Define all content fragments BEFORE usage #}
+{# Sidebar Menu #}
+{% set sidebar_menu %}
+  {% include 'sdc_shoelace:menu' with {
+    variant: 'tree',
+    items: [
+      {
+        label: 'Dashboard',
+        icon: 'house',
+        expanded: true,
+        children: [
+          { label: 'Overview', icon: 'graph-up' },
+          { label: 'Analytics', icon: 'bar-chart' },
+          { label: 'Reports', icon: 'file-text' }
+        ]
+      },
+      {
+        label: 'Content',
+        icon: 'file-earmark-text',
+        expanded: false,
+        children: [
+          { label: 'Articles', icon: 'newspaper' },
+          { label: 'Pages', icon: 'file-earmark' },
+          { label: 'Media', icon: 'image' }
+        ]
+      },
+      {
+        label: 'Users',
+        icon: 'people',
+        expanded: false,
+        children: [
+          { label: 'All Users', icon: 'person' },
+          { label: 'Roles', icon: 'shield-check' },
+          { label: 'Permissions', icon: 'key' }
+        ]
+      },
+      {
+        label: 'Settings',
+        icon: 'gear'
+      }
+    ]
+  } %}
+{% endset %}
+
+{# Badges #}
+{% set badge_success %}
+  {% include 'sdc_shoelace:badge' with {
+    label: '+12.5% from last month',
+    variant: 'success',
+    pill: true
+  } %}
+{% endset %}
+
+{% set badge_primary %}
+  {% include 'sdc_shoelace:badge' with {
+    label: '+8.2% from last month',
+    variant: 'primary',
+    pill: true
+  } %}
+{% endset %}
+
+{% set badge_warning %}
+  {% include 'sdc_shoelace:badge' with {
+    label: '+5.7% from last month',
+    variant: 'warning',
+    pill: true
+  } %}
+{% endset %}
+
+{# Stats Grid Content #}
+{% set stats_grid %}
+  {% include 'sdc_shoelace:card' with {
+    slots: {
+      header: '<div style="display: flex; align-items: center; gap: 0.5rem;">
+                 <sl-icon name="graph-up" style="color: var(--sl-color-success-600); font-size: 1.5rem;"></sl-icon>
+                 <h3 style="margin: 0;">Total Revenue</h3>
+               </div>',
+      footer: badge_success
+    },
+    content: '<div style="font-size: 2rem; font-weight: bold; color: var(--sl-color-success-600);">$45,231</div>
+              <p style="color: var(--sl-color-neutral-600); margin: 0.5rem 0 0;">From 1,234 transactions</p>'
+  } %}
+
+  {% include 'sdc_shoelace:card' with {
+    slots: {
+      header: '<div style="display: flex; align-items: center; gap: 0.5rem;">
+                 <sl-icon name="people" style="color: var(--sl-color-primary-600); font-size: 1.5rem;"></sl-icon>
+                 <h3 style="margin: 0;">Active Users</h3>
+               </div>',
+      footer: badge_primary
+    },
+    content: '<div style="font-size: 2rem; font-weight: bold; color: var(--sl-color-primary-600);">2,847</div>
+              <p style="color: var(--sl-color-neutral-600); margin: 0.5rem 0 0;">Online right now: 142</p>'
+  } %}
+
+  {% include 'sdc_shoelace:card' with {
+    slots: {
+      header: '<div style="display: flex; align-items: center; gap: 0.5rem;">
+                 <sl-icon name="file-earmark-text" style="color: var(--sl-color-warning-600); font-size: 1.5rem;"></sl-icon>
+                 <h3 style="margin: 0;">Content Items</h3>
+               </div>',
+      footer: badge_warning
+    },
+    content: '<div style="font-size: 2rem; font-weight: bold; color: var(--sl-color-warning-600);">1,439</div>
+              <p style="color: var(--sl-color-neutral-600); margin: 0.5rem 0 0;">168 pending review</p>'
+  } %}
+{% endset %}
+
+{# Progress Content #}
+{% set progress_content %}
+  <div style="display: flex; flex-direction: column; gap: 1.5rem;">
+    <div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+        <strong>Website Migration</strong>
+        <span>75%</span>
+      </div>
+      {% include 'sdc_shoelace:progress_bar' with {
+        value: 75,
+        label: '75% complete'
+      } %}
+    </div>
+    
+    <div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+        <strong>Content Audit</strong>
+        <span>45%</span>
+      </div>
+      {% include 'sdc_shoelace:progress_bar' with {
+        value: 45,
+        label: '45% complete'
+      } %}
+    </div>
+    
+    <div>
+      <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+        <strong>SEO Optimization</strong>
+        <span>90%</span>
+      </div>
+      {% include 'sdc_shoelace:progress_bar' with {
+        value: 90,
+        label: '90% complete'
+      } %}
+    </div>
+  </div>
+{% endset %}
+
+{# Page Content #}
+{% set page_content %}
+  {# Welcome Alert #}
+  {% include 'sdc_shoelace:alert' with {
+    variant: 'primary',
+    closable: true,
+    open: true,
+    icon: 'info-circle',
+    content: '<strong>Welcome!</strong> This is a showcase of Shoelace components in Drupal SDC.'
+  } %}
+
+  {% include 'sdc_shoelace:divider' %}
+
+  {# Breadcrumb #}
+  {% include 'sdc_shoelace:breadcrumb' with {
+    items: [
+      { label: 'Home', href: '/' },
+      { label: 'Dashboard', href: '/dashboard' },
+      { label: 'Overview' }
+    ]
+  } %}
+
+  <div style="margin: 2rem 0;">
+    <h1>Dashboard Overview</h1>
+    <p>Welcome to your Shoelace-powered Drupal dashboard.</p>
+  </div>
+
+  {# Stats Cards in Grid #}
+  {% include 'sdc_shoelace:grid' with {
+    columns: 3,
+    gap: 'medium',
+    responsive: true,
+    content: stats_grid
+  } %}
+
+  {% include 'sdc_shoelace:divider' with {
+    vertical: false
+  } %}
+
+  {# Progress Section #}
+  <div style="margin: 2rem 0;">
+    {% include 'sdc_shoelace:card' with {
+      header: 'Project Progress',
+      content: progress_content
+    } %}
+  </div>
+
+  {# Action Buttons #}
+  <div style="margin: 2rem 0;">
+    <sl-button-group>
+      <sl-button variant="primary">
+        <sl-icon slot="prefix" name="plus-circle"></sl-icon>
+        Add New Content
+      </sl-button>
+      <sl-button variant="default">
+        <sl-icon slot="prefix" name="download"></sl-icon>
+        Export Data
+      </sl-button>
+      <sl-button variant="default">
+        <sl-icon slot="prefix" name="arrow-clockwise"></slicon>
+        Refresh
+      </sl-button>
+    </sl-button-group>
+  </div>
+
+  {# Recent Activity Card #}
+  {% include 'sdc_shoelace:card' with {
+    header: 'Recent Activity',
+    content: '<sl-table>
+                <table>
+                  <thead>
+                    <tr>
+                      <th>User</th>
+                      <th>Action</th>
+                      <th>Date</th>
+                      <th>Status</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    <tr>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                          <sl-avatar label="John Doe"></sl-avatar>
+                          John Doe
+                        </div>
+                      </td>
+                      <td>Created Article</td>
+                      <td>2 hours ago</td>
+                      <td><sl-tag variant="success">Published</sl-tag></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                          <sl-avatar label="Jane Smith"></sl-avatar>
+                          Jane Smith
+                        </div>
+                      </td>
+                      <td>Updated Page</td>
+                      <td>4 hours ago</td>
+                      <td><sl-tag variant="primary">Draft</sl-tag></td>
+                    </tr>
+                    <tr>
+                      <td>
+                        <div style="display: flex; align-items: center; gap: 0.5rem;">
+                          <sl-avatar label="Bob Wilson"></sl-avatar>
+                          Bob Wilson
+                        </div>
+                      </td>
+                      <td>Uploaded Media</td>
+                      <td>1 day ago</td>
+                      <td><sl-tag variant="success">Complete</sl-tag></td>
+                    </tr>
+                  </tbody>
+                </table>
+              </sl-table>',
+    slots: {
+      footer: '<sl-button variant="text">View All Activity →</sl-button>'
+    }
+  } %}
+{% endset %}
+
+<div class="page-wrapper front-page">
+  
+  {# Header #}
+  {% include 'sdc_shoelace:header' with {
+    site_name: 'Shoelace Component Library',
+    show_nav_icon: true,
+    slots: {
+      nav_icon: '<sl-button variant="text" size="large">
+                   <sl-icon name="list"></sl-icon>
+                 </sl-button>',
+      actions: '<sl-button-group>
+                  <sl-button variant="text">
+                    <sl-icon name="bell"></sl-icon>
+                  </sl-button>
+                  <sl-button variant="text">
+                    <sl-icon name="gear"></sl-icon>
+                  </sl-button>
+                  <sl-dropdown>
+                    <sl-button slot="trigger" caret variant="text">
+                      <sl-avatar label="Admin User"></sl-avatar>
+                    </sl-button>
+                    <sl-menu>
+                      <sl-menu-item>
+                        <sl-icon slot="prefix" name="person"></sl-icon>
+                        Profile
+                      </sl-menu-item>
+                      <sl-menu-item>
+                        <sl-icon slot="prefix" name="gear"></sl-icon>
+                        Settings
+                      </sl-menu-item>
+                      <sl-divider></sl-divider>
+                      <sl-menu-item>
+                        <sl-icon slot="prefix" name="box-arrow-right"></sl-icon>
+                        Logout
+                      </sl-menu-item>
+                    </sl-menu>
+                  </sl-dropdown>
+                </sl-button-group>'
+    }
+  } %}
+
+  <div class="layout-with-sidebar">
+    
+    {# Sidebar with Menu #}
+    <aside class="sidebar">
+      {% include 'sdc_shoelace:drawer' with {
+        label: 'Main Navigation',
+        placement: 'start',
+        open: true,
+        contained: true,
+        content: sidebar_menu
+      } %}
+    </aside>
+
+    {# Main Content #}
+    <main class="main-content">
+      {% include 'sdc_shoelace:container' with {
+        variant: 'fluid',
+        padding: 'large',
+        content: page_content
+      } %}
+    </main>
+  </div>
+</div>
+ 

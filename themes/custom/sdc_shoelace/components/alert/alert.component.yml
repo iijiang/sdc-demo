@@ -1,0 +1,23 @@
+id: sdc_shoelace:alert
+label: "Alert"
+props:
+  variant:
+    type: string
+    enum:
+      - primary
+      - success
+      - neutral
+      - warning
+      - danger
+    default: "primary"
+  closable:
+    type: boolean
+    default: false
+  open:
+    type: boolean
+    default: true
+  icon:
+    type: string
+slots:
+  content:
+    title: "Alert Content"

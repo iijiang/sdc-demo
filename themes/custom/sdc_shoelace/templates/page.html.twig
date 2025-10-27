@@ -1,0 +1,110 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a single page with Shoelace components.
+ *
+ * Available variables:
+ * - page: A render array representing the page content.
+ */
+#}
+<div class="page-wrapper">
+  
+  {# Main content template block (define BEFORE usage) #}
+  {% set main_content_template %}
+    {# Breadcrumb #}
+    {% if breadcrumb %}
+      {% include 'sdc_shoelace:breadcrumb' with {
+        items: breadcrumb
+      } %}
+    {% endif %}
+
+    {# Messages/Alerts #}
+    {% if messages %}
+      <div class="messages-container">
+        {{ messages }}
+      </div>
+    {% endif %}
+
+    {# Page Title in Card (optional) #}
+    {% if title %}
+      {% include 'sdc_shoelace:card' with {
+        header: title,
+        content: ''
+      } %}
+    {% endif %}
+
+    {# Main Content #}
+    <div class="main-content">
+      {{ page.content }}
+    </div>
+  {% endset %}
+  
+  {# Header with Shoelace #}
+  {% include 'sdc_shoelace:header' with {
+    site_name: site_name|default('SDC Shoelace Demo'),
+    show_nav_icon: true,
+    slots: {
+      actions: '<sl-button-group>
+                  <sl-button variant="text">
+                    <sl-icon name="bell"></sl-icon>
+                  </sl-button>
+                  <sl-dropdown>
+                    <sl-button slot="trigger" caret variant="text">
+                      <sl-avatar label="User"></sl-avatar>
+                    </sl-button>
+                    <sl-menu>
+                      <sl-menu-item>Profile</sl-menu-item>
+                      <sl-menu-item>Settings</sl-menu-item>
+                      <sl-divider></sl-divider>
+                      <sl-menu-item>Logout</sl-menu-item>
+                    </sl-menu>
+                  </sl-dropdown>
+                </sl-button-group>'
+    }
+  } %}
+
+  <div class="layout-container">
+    
+    {# Sidebar Navigation #}
+    {% if page.sidebar_first %}
+      <aside class="layout-sidebar-first">
+        {% include 'sdc_shoelace:drawer' with {
+          label: 'Navigation',
+          placement: 'start',
+          open: true,
+          contained: true,
+          content: page.sidebar_first
+        } %}
+      </aside>
+    {% endif %}
+
+    {# Main Content Area #}
+    <main class="layout-main">
+      {% include 'sdc_shoelace:container' with {
+        variant: 'fixed',
+        padding: 'medium',
+        content: main_content_template
+      } %}
+    </main>
+
+    {# Sidebar Second #}
+    {% if page.sidebar_second %}
+      <aside class="layout-sidebar-second">
+        {{ page.sidebar_second }}
+      </aside>
+    {% endif %}
+  </div>
+
+  {# Footer #}
+  {% if page.footer %}
+    <footer class="layout-footer">
+      {% include 'sdc_shoelace:container' with {
+        variant: 'fixed',
+        padding: 'medium',
+        content: page.footer
+      } %}
+    </footer>
+  {% endif %}
+</div>
+
+  {# End page wrapper #}

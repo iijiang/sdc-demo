@@ -1,0 +1,10 @@
+<sl-alert 
+  variant="{{ variant }}"
+  {% if open %}open{% endif %}
+  {% if closable %}closable{% endif %}
+>
+  {% if icon %}
+    <sl-icon slot="icon" name="{{ icon }}"></sl-icon>
+  {% endif %}
+  {{ content }}
+</sl-alert>

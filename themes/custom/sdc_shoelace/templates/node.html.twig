@@ -1,0 +1,78 @@
+{#
+/**
+ * @file
+ * Default node template using Shoelace Card component.
+ *
+ * Available variables:
+ * - node: The node entity with limited access to object properties and methods.
+ * - label: The title of the node.
+ * - content: All node items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}.
+ * - url: Direct URL of the current node.
+ * - date: Formatted creation date.
+ */
+#}
+<article{{ attributes.addClass('node', 'node--type-' ~ node.bundle|clean_class) }}>
+  
+  {% include 'sdc_shoelace:card' with {
+    slots: {
+      header: node_header,
+      footer: node_footer
+    },
+    content: node_content
+  } %}
+
+</article>
+
+{# Node Header #}
+{% set node_header %}
+  <div class="node-header">
+    {% if not page %}
+      <h2{{ title_attributes.addClass('node-title') }}>
+        <a href="{{ url }}" rel="bookmark">{{ label }}</a>
+      </h2>
+    {% else %}
+      <h1{{ title_attributes.addClass('node-title') }}>
+        {{ label }}
+      </h1>
+    {% endif %}
+    
+    {% if display_submitted %}
+      <div class="node-meta">
+        <sl-avatar label="{{ author_name }}"></sl-avatar>
+        <div class="meta-info">
+          <span class="author">{{ author_name }}</span>
+          <span class="date">{{ date }}</span>
+        </div>
+      </div>
+    {% endif %}
+  </div>
+{% endset %}
+
+{# Node Content #}
+{% set node_content %}
+  {{ content|without('links') }}
+{% endset %}
+
+{# Node Footer #}
+{% set node_footer %}
+  {% if content.links %}
+    <div class="node-links">
+      {{ content.links }}
+    </div>
+  {% endif %}
+  
+  {% if node.isPublished() %}
+    {% include 'sdc_shoelace:badge' with {
+      label: 'Published',
+      variant: 'success',
+      pill: true
+    } %}
+  {% else %}
+    {% include 'sdc_shoelace:badge' with {
+      label: 'Unpublished',
+      variant: 'neutral',
+      pill: true
+    } %}
+  {% endif %}
+{% endset %}

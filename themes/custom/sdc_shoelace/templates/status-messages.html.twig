@@ -1,0 +1,39 @@
+{#
+/**
+ * @file
+ * Status messages as Shoelace Alerts.
+ *
+ * Available variables:
+ * - message_list: List of messages to be displayed, grouped by type.
+ * - status_headings: The list of status types of messages with labels.
+ */
+#}
+<div data-drupal-messages>
+  {% for type, messages in message_list %}
+    {% set variant = 'primary' %}
+    {% set icon = 'info-circle' %}
+    
+    {% if type == 'status' %}
+      {% set variant = 'success' %}
+      {% set icon = 'check-circle' %}
+    {% elseif type == 'warning' %}
+      {% set variant = 'warning' %}
+      {% set icon = 'exclamation-triangle' %}
+    {% elseif type == 'error' %}
+      {% set variant = 'danger' %}
+      {% set icon = 'exclamation-octagon' %}
+    {% endif %}
+
+    {% for message in messages %}
+      <div style="margin-bottom: 1rem;">
+        {% include 'sdc_shoelace:alert' with {
+          variant: variant,
+          closable: true,
+          open: true,
+          icon: icon,
+          content: message
+        } %}
+      </div>
+    {% endfor %}
+  {% endfor %}
+</div>

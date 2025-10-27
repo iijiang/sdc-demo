@@ -1,0 +1,12 @@
+id: sdc_shoelace:menu
+label: "Menu"
+props:
+  items:
+    type: array
+    title: "Menu Items"
+  variant:
+    type: string
+    enum:
+      - default
+      - tree
+    default: "default"

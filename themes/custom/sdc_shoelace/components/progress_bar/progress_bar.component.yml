@@ -1,0 +1,11 @@
+id: sdc_shoelace:progress_bar
+label: "Progress Bar"
+props:
+  value:
+    type: number
+    default: 0
+  label:
+    type: string
+  indeterminate:
+    type: boolean
+    default: false

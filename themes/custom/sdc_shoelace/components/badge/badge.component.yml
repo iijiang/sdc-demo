@@ -1,0 +1,21 @@
+id: sdc_shoelace:badge
+label: "Badge"
+props:
+  label:
+    type: string
+    default: "Badge"
+  variant:
+    type: string
+    enum:
+      - primary
+      - success
+      - neutral
+      - warning
+      - danger
+    default: "primary"
+  pill:
+    type: boolean
+    default: false
+  pulse:
+    type: boolean
+    default: false
