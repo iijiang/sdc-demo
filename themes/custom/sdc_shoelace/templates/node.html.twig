@@ -12,19 +12,8 @@
  * - date: Formatted creation date.
  */
 #}
-<article{{ attributes.addClass('node', 'node--type-' ~ node.bundle|clean_class) }}>
-  
-  {% include 'sdc_shoelace:card' with {
-    slots: {
-      header: node_header,
-      footer: node_footer
-    },
-    content: node_content
-  } %}
 
-</article>
-
-{# Node Header #}
+{# Node Header - DEFINE FIRST #}
 {% set node_header %}
   <div class="node-header">
     {% if not page %}
@@ -49,12 +38,12 @@
   </div>
 {% endset %}
 
-{# Node Content #}
+{# Node Content - DEFINE SECOND #}
 {% set node_content %}
   {{ content|without('links') }}
 {% endset %}
 
-{# Node Footer #}
+{# Node Footer - DEFINE THIRD #}
 {% set node_footer %}
   {% if content.links %}
     <div class="node-links">
@@ -76,3 +65,16 @@
     } %}
   {% endif %}
 {% endset %}
+
+{# NOW render the article with all variables defined #}
+<article{{ attributes.addClass('node', 'node--type-' ~ node.bundle|clean_class) }}>
+  
+  {% include 'sdc_shoelace:card' with {
+    slots: {
+      header: node_header,
+      footer: node_footer
+    },
+    content: node_content
+  } %}
+
+</article>

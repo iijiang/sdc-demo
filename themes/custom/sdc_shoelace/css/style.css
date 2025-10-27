@@ -23,6 +23,7 @@ body {
   display: flex;
   flex: 1;
   max-width: 100%;
+  min-height: calc(100vh - 60px); /* Account for header height */
 }
 
 /* Sidebar Styles */
@@ -32,6 +33,7 @@ body {
   background: var(--sl-color-neutral-0);
   border-right: 1px solid var(--sl-color-neutral-200);
   flex-shrink: 0;
+  overflow-y: auto;
 }
 
 .layout-sidebar-second {

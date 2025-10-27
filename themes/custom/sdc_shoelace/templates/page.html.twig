@@ -68,13 +68,7 @@
     {# Sidebar Navigation #}
     {% if page.sidebar_first %}
       <aside class="layout-sidebar-first">
-        {% include 'sdc_shoelace:drawer' with {
-          label: 'Navigation',
-          placement: 'start',
-          open: true,
-          contained: true,
-          content: page.sidebar_first
-        } %}
+        {{ page.sidebar_first }}
       </aside>
     {% endif %}
 
