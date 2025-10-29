@@ -1,0 +1,279 @@
+/**
+ * Notification Card Styles
+ * Demonstrates Shadow DOM styling with ::part() selectors
+ */
+
+/* ==========================================================================
+   Base Card Styling
+   ========================================================================== */
+
+.notification-card::part(base) {
+  border-radius: 12px;
+  border: none;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  overflow: hidden;
+}
+
+.notification-card:hover::part(base) {
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.12);
+  transform: translateY(-2px);
+}
+
+/* Header Section */
+.notification-card::part(header) {
+  padding: 1.25rem;
+  border-bottom: 2px solid var(--notification-border-color, #e5e7eb);
+  background: var(--notification-header-bg, #f9fafb);
+}
+
+/* Body Section */
+.notification-card::part(body) {
+  padding: 1.25rem;
+  background: var(--notification-body-bg, #ffffff);
+}
+
+/* Footer Section */
+.notification-card::part(footer) {
+  padding: 1rem 1.25rem;
+  background: var(--notification-footer-bg, #f9fafb);
+  border-top: 1px solid var(--notification-border-color, #e5e7eb);
+}
+
+/* ==========================================================================
+   Header Layout
+   ========================================================================== */
+
+.notification-header {
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+}
+
+.notification-icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: var(--notification-icon-bg, #dbeafe);
+  color: var(--notification-icon-color, #2563eb);
+  flex-shrink: 0;
+}
+
+.notification-icon sl-icon {
+  font-size: 1.5rem;
+}
+
+.notification-title-wrapper {
+  flex: 1;
+  min-width: 0;
+}
+
+.notification-title {
+  margin: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--notification-title-color, #111827);
+  line-height: 1.4;
+}
+
+.notification-timestamp {
+  display: flex;
+  align-items: center;
+  gap: 0.25rem;
+  margin-top: 0.25rem;
+  font-size: 0.75rem;
+  color: #6b7280;
+}
+
+.notification-timestamp sl-icon {
+  font-size: 0.875rem;
+}
+
+.notification-dismiss {
+  flex-shrink: 0;
+}
+
+/* ==========================================================================
+   Message Content
+   ========================================================================== */
+
+.notification-message {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  color: #4b5563;
+}
+
+.notification-message p {
+  margin: 0 0 0.75rem 0;
+}
+
+.notification-message p:last-child {
+  margin-bottom: 0;
+}
+
+/* ==========================================================================
+   Actions Footer
+   ========================================================================== */
+
+.notification-actions {
+  display: flex;
+  gap: 0.75rem;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+/* ==========================================================================
+   Variant Styles - Info (Blue)
+   ========================================================================== */
+
+.notification-card--info {
+  --notification-border-color: #bfdbfe;
+  --notification-header-bg: #eff6ff;
+  --notification-icon-bg: #dbeafe;
+  --notification-icon-color: #2563eb;
+  --notification-title-color: #1e40af;
+}
+
+.notification-card--info::part(base) {
+  border-left: 4px solid #3b82f6;
+}
+
+/* ==========================================================================
+   Variant Styles - Success (Green)
+   ========================================================================== */
+
+.notification-card--success {
+  --notification-border-color: #bbf7d0;
+  --notification-header-bg: #f0fdf4;
+  --notification-icon-bg: #dcfce7;
+  --notification-icon-color: #16a34a;
+  --notification-title-color: #15803d;
+}
+
+.notification-card--success::part(base) {
+  border-left: 4px solid #22c55e;
+}
+
+.notification-card--success::part(header) {
+  background: linear-gradient(135deg, #f0fdf4 0%, #dcfce7 100%);
+}
+
+/* ==========================================================================
+   Variant Styles - Warning (Orange)
+   ========================================================================== */
+
+.notification-card--warning {
+  --notification-border-color: #fed7aa;
+  --notification-header-bg: #fffbeb;
+  --notification-icon-bg: #fef3c7;
+  --notification-icon-color: #d97706;
+  --notification-title-color: #b45309;
+}
+
+.notification-card--warning::part(base) {
+  border-left: 4px solid #f59e0b;
+}
+
+.notification-card--warning .notification-icon {
+  animation: pulse-warning 2s ease-in-out infinite;
+}
+
+@keyframes pulse-warning {
+  0%, 100% {
+    box-shadow: 0 0 0 0 rgba(245, 158, 11, 0.4);
+  }
+  50% {
+    box-shadow: 0 0 0 8px rgba(245, 158, 11, 0);
+  }
+}
+
+/* ==========================================================================
+   Variant Styles - Danger (Red)
+   ========================================================================== */
+
+.notification-card--danger {
+  --notification-border-color: #fecaca;
+  --notification-header-bg: #fef2f2;
+  --notification-icon-bg: #fee2e2;
+  --notification-icon-color: #dc2626;
+  --notification-title-color: #b91c1c;
+}
+
+.notification-card--danger::part(base) {
+  border-left: 4px solid #ef4444;
+}
+
+.notification-card--danger::part(header) {
+  background: linear-gradient(135deg, #fef2f2 0%, #fee2e2 100%);
+}
+
+/* ==========================================================================
+   Responsive Design
+   ========================================================================== */
+
+@media (max-width: 640px) {
+  .notification-card::part(header),
+  .notification-card::part(body),
+  .notification-card::part(footer) {
+    padding: 1rem;
+  }
+  
+  .notification-header {
+    gap: 0.75rem;
+  }
+  
+  .notification-icon {
+    width: 36px;
+    height: 36px;
+  }
+  
+  .notification-icon sl-icon {
+    font-size: 1.25rem;
+  }
+  
+  .notification-title {
+    font-size: 0.9375rem;
+  }
+  
+  .notification-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  
+  .notification-actions sl-button {
+    width: 100%;
+  }
+}
+
+/* ==========================================================================
+   Dark Mode Support
+   ========================================================================== */
+
+@media (prefers-color-scheme: dark) {
+  .notification-card::part(base) {
+    background: #1f2937;
+  }
+  
+  .notification-card::part(header) {
+    background: #111827;
+  }
+  
+  .notification-card::part(body) {
+    background: #1f2937;
+  }
+  
+  .notification-card::part(footer) {
+    background: #111827;
+  }
+  
+  .notification-title {
+    color: #f9fafb;
+  }
+  
+  .notification-message {
+    color: #d1d5db;
+  }
+}

@@ -1,0 +1,225 @@
+{#
+/**
+ * @file
+ * Demo page showing Notification Card component usage with Shadow DOM styling.
+ * 
+ * To use: Create a page at /notifications-demo
+ */
+#}
+
+{# Define notification examples FIRST #}
+{% set notification_examples %}
+  <div style="display: grid; gap: 1.5rem; max-width: 800px; margin: 0 auto;">
+    
+    {# Info Notification #}
+    {% include 'sdc_shoelace:notification_card' with {
+      variant: 'info',
+      icon: 'info-circle',
+      title: 'New Feature Available',
+      message: '<p>We\'ve just released a new dashboard feature! Check out the analytics section to see detailed reports of your site activity.</p>',
+      show_timestamp: true,
+      timestamp: '2 hours ago',
+      slots: {
+        actions: '<sl-button variant="primary" size="small">
+                    Learn More
+                    <sl-icon slot="suffix" name="arrow-right"></sl-icon>
+                  </sl-button>
+                  <sl-button variant="text" size="small">Dismiss</sl-button>'
+      }
+    } %}
+    
+    {# Success Notification #}
+    {% include 'sdc_shoelace:notification_card' with {
+      variant: 'success',
+      icon: 'check-circle',
+      title: 'Content Published Successfully',
+      message: '<p>Your article "<strong>Getting Started with Drupal SDC</strong>" has been published and is now live on your website.</p>
+                <p><sl-icon name="eye"></sl-icon> Expected reach: 1,234 visitors</p>',
+      show_timestamp: true,
+      timestamp: '5 minutes ago',
+      slots: {
+        actions: '<sl-button variant="success" size="small">
+                    View Article
+                  </sl-button>
+                  <sl-button variant="text" size="small">Share</sl-button>'
+      }
+    } %}
+    
+    {# Warning Notification #}
+    {% include 'sdc_shoelace:notification_card' with {
+      variant: 'warning',
+      icon: 'exclamation-triangle',
+      title: 'Cache Optimization Recommended',
+      message: '<p>Your site cache hasn\'t been cleared in 7 days. This may affect performance and prevent new changes from appearing.</p>
+                <p><strong>Recommended:</strong> Clear cache now to ensure optimal performance.</p>',
+      show_timestamp: true,
+      timestamp: '1 day ago',
+      slots: {
+        actions: '<sl-button variant="warning" size="small">
+                    <sl-icon slot="prefix" name="arrow-clockwise"></sl-icon>
+                    Clear Cache Now
+                  </sl-button>
+                  <sl-button variant="text" size="small">Remind Me Later</sl-button>'
+      }
+    } %}
+    
+    {# Danger/Error Notification #}
+    {% include 'sdc_shoelace:notification_card' with {
+      variant: 'danger',
+      icon: 'exclamation-octagon',
+      title: 'Security Update Required',
+      message: '<p><strong>Critical:</strong> A security vulnerability has been detected in one of your modules.</p>
+                <p>Module: <code>views</code> (version 8.x-1.0)<br>
+                Recommended: Update to version 8.x-1.2 immediately.</p>',
+      show_timestamp: true,
+      timestamp: '30 minutes ago',
+      dismissible: false,
+      slots: {
+        actions: '<sl-button variant="danger" size="small">
+                    <sl-icon slot="prefix" name="shield-check"></sl-icon>
+                    Update Now
+                  </sl-button>
+                  <sl-button variant="text" size="small">View Details</sl-button>'
+      }
+    } %}
+    
+    {# Simple Info without actions #}
+    {% include 'sdc_shoelace:notification_card' with {
+      variant: 'info',
+      icon: 'lightbulb',
+      title: 'Pro Tip',
+      message: '<p>Did you know? You can use keyboard shortcuts to speed up your workflow. Press <kbd>Ctrl+S</kbd> to quick save your content.</p>',
+      show_timestamp: false,
+      dismissible: true
+    } %}
+    
+    {# Success without timestamp #}
+    {% include 'sdc_shoelace:notification_card' with {
+      variant: 'success',
+      icon: 'cloud-check',
+      title: 'Backup Completed',
+      message: '<p>Your daily automated backup has completed successfully. All files and database are safely stored.</p>
+                <p>Backup size: 2.4 GB | Location: AWS S3</p>',
+      show_timestamp: false,
+      slots: {
+        actions: '<sl-button variant="text" size="small">
+                    <sl-icon slot="prefix" name="download"></sl-icon>
+                    Download Backup
+                  </sl-button>'
+      }
+    } %}
+    
+  </div>
+{% endset %}
+
+{# Code examples section #}
+{% set code_examples %}
+  <div style="max-width: 800px; margin: 2rem auto;">
+    
+    {% include 'sdc_shoelace:card' with {
+      slots: {
+        header: '<h2>How to Use This Component</h2>'
+      },
+      content: '
+        <h3>Basic Usage</h3>
+        <pre><code>{% include \'sdc_shoelace:notification_card\' with {
+  variant: \'info\',
+  icon: \'info-circle\',
+  title: \'Notification Title\',
+  message: \'&lt;p&gt;Your message here&lt;/p&gt;\',
+  show_timestamp: true,
+  timestamp: \'5 minutes ago\'
+} %}</code></pre>
+
+        <h3>With Action Buttons</h3>
+        <pre><code>{% include \'sdc_shoelace:notification_card\' with {
+  variant: \'success\',
+  icon: \'check-circle\',
+  title: \'Success!\',
+  message: \'&lt;p&gt;Operation completed&lt;/p&gt;\',
+  slots: {
+    actions: \'&lt;sl-button variant="primary"&gt;View&lt;/sl-button&gt;\'
+  }
+} %}</code></pre>
+
+        <h3>Available Variants</h3>
+        <ul>
+          <li><strong>info</strong> - Blue (default)</li>
+          <li><strong>success</strong> - Green</li>
+          <li><strong>warning</strong> - Orange/Yellow</li>
+          <li><strong>danger</strong> - Red</li>
+        </ul>
+
+        <h3>Shadow DOM Styling</h3>
+        <p>This component demonstrates Shadow DOM styling using <code>::part()</code> selectors. Check <code>notification_card.css</code> to see examples of:</p>
+        <ul>
+          <li>Styling Shoelace card parts (base, header, body, footer)</li>
+          <li>Using CSS custom properties for variant colors</li>
+          <li>Adding animations with keyframes</li>
+          <li>Responsive design</li>
+          <li>Dark mode support</li>
+        </ul>
+      '
+    } %}
+    
+  </div>
+{% endset %}
+
+{# Main page content #}
+{% set demo_page_content %}
+  <div style="padding: 2rem 0;">
+    
+    {# Page header #}
+    <div style="text-align: center; margin-bottom: 3rem;">
+      <h1 style="font-size: 2.5rem; margin-bottom: 1rem; background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); -webkit-background-clip: text; -webkit-text-fill-color: transparent;">
+        Notification Card Component
+      </h1>
+      <p style="font-size: 1.125rem; color: #6b7280; max-width: 600px; margin: 0 auto;">
+        A real-world example demonstrating Shoelace components with Shadow DOM styling in Drupal SDC
+      </p>
+    </div>
+    
+    {# Alert explaining the demo #}
+    {% include 'sdc_shoelace:alert' with {
+      variant: 'primary',
+      icon: 'code-square',
+      open: true,
+      content: '<strong>This is a live demo!</strong> All notification cards below are using the <code>notification_card</code> component with different variants and configurations. Hover over them to see the Shadow DOM styling effects.'
+    } %}
+    
+    <div style="margin: 2rem 0;">
+      {% include 'sdc_shoelace:divider' %}
+    </div>
+    
+    {# Display notifications #}
+    {{ notification_examples }}
+    
+    <div style="margin: 3rem 0;">
+      {% include 'sdc_shoelace:divider' %}
+    </div>
+    
+    {# Code examples #}
+    {{ code_examples }}
+    
+  </div>
+{% endset %}
+
+{# Render the page #}
+<div class="page-wrapper">
+  
+  {# Header #}
+  {% include 'sdc_shoelace:header' with {
+    site_name: 'SDC Shoelace Demo',
+    show_nav_icon: true
+  } %}
+  
+  {# Main content #}
+  <main style="max-width: 1200px; margin: 0 auto; padding: 2rem 1rem;">
+    {% include 'sdc_shoelace:container' with {
+      variant: 'fluid',
+      padding: 'none',
+      content: demo_page_content
+    } %}
+  </main>
+  
+</div>

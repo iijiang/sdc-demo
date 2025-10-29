@@ -1,0 +1,35 @@
+{#
+/**
+ * @file
+ * Notification Card component using Shoelace with Shadow DOM styling.
+ */
+#}
+<sl-card class="notification-card notification-card--{{ variant }}">
+  <div slot="header" class="notification-header">
+    <div class="notification-icon">
+      <sl-icon name="{{ icon }}"></sl-icon>
+    </div>
+    <div class="notification-title-wrapper">
+      <h3 class="notification-title">{{ title }}</h3>
+      {% if show_timestamp and timestamp %}
+        <span class="notification-timestamp">
+          <sl-icon name="clock"></sl-icon>
+          {{ timestamp }}
+        </span>
+      {% endif %}
+    </div>
+    {% if dismissible %}
+      <sl-icon-button name="x-lg" label="Dismiss" class="notification-dismiss"></sl-icon-button>
+    {% endif %}
+  </div>
+  
+  <div class="notification-message">
+    {{ message|raw }}
+  </div>
+  
+  {% if slots.actions %}
+    <div slot="footer" class="notification-actions">
+      {{ slots.actions|raw }}
+    </div>
+  {% endif %}
+</sl-card>

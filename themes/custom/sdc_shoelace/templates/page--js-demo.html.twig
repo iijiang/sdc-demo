@@ -1,0 +1,356 @@
+{#
+/**
+ * @file
+ * Demo page showing JavaScript functionality with notification_card component
+ */
+#}
+
+{# Load Drupal integration for AJAX support #}
+{{ attach_library('sdc_shoelace/notification-card-drupal') }}
+
+{% set demo_content %}
+  <div style="max-width: 800px; margin: 0 auto;">
+    
+    {# Alert explaining the demo #}
+    {% include 'sdc_shoelace:alert' with {
+      variant: 'primary',
+      icon: 'code-square',
+      open: true,
+      content: '<strong>Interactive JavaScript Demo!</strong> Click the buttons below to trigger notifications programmatically. The component includes dismiss, auto-hide, animations, and analytics tracking.'
+    } %}
+
+    <div style="margin: 2rem 0;">
+      {% include 'sdc_shoelace:divider' %}
+    </div>
+
+    {# Control Panel #}
+    {% include 'sdc_shoelace:card' with {
+      slots: {
+        header: '<h2><sl-icon name="sliders"></sl-icon> Notification Controls</h2>'
+      },
+      content: '
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem; margin-bottom: 1.5rem;">
+          <sl-button variant="primary" id="show-info">
+            <sl-icon slot="prefix" name="info-circle"></sl-icon>
+            Show Info
+          </sl-button>
+          
+          <sl-button variant="success" id="show-success">
+            <sl-icon slot="prefix" name="check-circle"></sl-icon>
+            Show Success
+          </sl-button>
+          
+          <sl-button variant="warning" id="show-warning">
+            <sl-icon slot="prefix" name="exclamation-triangle"></sl-icon>
+            Show Warning
+          </sl-button>
+          
+          <sl-button variant="danger" id="show-danger">
+            <sl-icon slot="prefix" name="exclamation-octagon"></sl-icon>
+            Show Danger
+          </sl-button>
+        </div>
+
+        <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 1rem;">
+          <sl-button variant="neutral" id="show-auto-dismiss">
+            <sl-icon slot="prefix" name="clock"></sl-icon>
+            Auto Dismiss (3s)
+          </sl-button>
+          
+          <sl-button variant="neutral" id="show-multiple">
+            <sl-icon slot="prefix" name="stack"></sl-icon>
+            Show Multiple
+          </sl-button>
+          
+          <sl-button variant="neutral" id="clear-logs">
+            <sl-icon slot="prefix" name="trash"></sl-icon>
+            Clear Logs
+          </sl-button>
+        </div>
+      '
+    } %}
+
+    <div style="margin: 2rem 0;">
+      {% include 'sdc_shoelace:divider' %}
+    </div>
+
+    {# Static notification example #}
+    <h2>Static Notification (Server-side)</h2>
+    <p>This notification is rendered by Drupal/Twig with JavaScript enhancements:</p>
+    
+    {% include 'sdc_shoelace:notification_card' with {
+      variant: 'info',
+      icon: 'lightbulb',
+      title: 'JavaScript Enhanced',
+      message: '<p>This static notification has interactive JavaScript features:</p>
+                <ul>
+                  <li>Click the X to dismiss with animation</li>
+                  <li>Hover to see elevation effect</li>
+                  <li>Press ESC key to dismiss (when focused)</li>
+                  <li>Automatically logged to localStorage</li>
+                </ul>',
+      show_timestamp: true,
+      timestamp: 'Just now'
+    } %}
+
+    <div style="margin: 2rem 0;">
+      {% include 'sdc_shoelace:divider' %}
+    </div>
+
+    {# JavaScript API Documentation #}
+    {% include 'sdc_shoelace:card' with {
+      slots: {
+        header: '<h2><sl-icon name="code-slash"></sl-icon> JavaScript API</h2>'
+      },
+      content: '
+        <h3>Basic Usage</h3>
+        <pre><code>// Show a notification programmatically
+Drupal.notificationCard.show({
+  variant: "success",
+  title: "Success!",
+  message: "&lt;p&gt;Your action completed successfully.&lt;/p&gt;",
+  dismissible: true,
+  duration: 3000  // Auto-dismiss after 3 seconds
+});</code></pre>
+
+        <h3>Available Options</h3>
+        <table style="width: 100%; border-collapse: collapse;">
+          <thead>
+            <tr style="background: var(--sl-color-neutral-100);">
+              <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--sl-color-neutral-200);">Option</th>
+              <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--sl-color-neutral-200);">Type</th>
+              <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--sl-color-neutral-200);">Default</th>
+              <th style="padding: 0.75rem; text-align: left; border: 1px solid var(--sl-color-neutral-200);">Description</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);"><code>variant</code></td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">string</td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">info</td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">Notification type (info, success, warning, danger)</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);"><code>title</code></td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">string</td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">Notification</td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">Notification title text</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);"><code>message</code></td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">string (HTML)</td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">""</td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">Message content (HTML allowed)</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);"><code>dismissible</code></td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">boolean</td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">true</td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">Show dismiss button</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);"><code>duration</code></td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">number</td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">0</td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">Auto-dismiss after X milliseconds (0 = never)</td>
+            </tr>
+            <tr>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);"><code>icon</code></td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">string</td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">auto</td>
+              <td style="padding: 0.75rem; border: 1px solid var(--sl-color-neutral-200);">Shoelace icon name (auto-selected by variant)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <h3 style="margin-top: 2rem;">Events</h3>
+        <pre><code>// Listen for notification dismiss
+document.addEventListener("notificationDismiss", function(e) {
+  console.log("Dismissed:", e.detail);
+});
+
+// Listen for notification removed
+document.addEventListener("notificationRemoved", function(e) {
+  console.log("Removed:", e.detail);
+});</code></pre>
+
+        <h3>Features</h3>
+        <ul>
+          <li><strong>Entrance Animations</strong> - Smooth slide-in from right</li>
+          <li><strong>Exit Animations</strong> - Fade and slide out</li>
+          <li><strong>Auto-dismiss</strong> - Optional timeout for success messages</li>
+          <li><strong>Keyboard Support</strong> - Press ESC to dismiss</li>
+          <li><strong>Analytics Logging</strong> - Automatic tracking to localStorage</li>
+          <li><strong>Event System</strong> - Custom events for integration</li>
+          <li><strong>Stacking</strong> - Multiple notifications stack nicely</li>
+        </ul>
+      '
+    } %}
+
+    <div style="margin: 2rem 0;">
+      {% include 'sdc_shoelace:divider' %}
+    </div>
+
+    {# Analytics Display #}
+    {% include 'sdc_shoelace:card' with {
+      slots: {
+        header: '<h2><sl-icon name="graph-up"></sl-icon> Notification Logs</h2>'
+      },
+      content: '<p>Notifications are automatically logged to localStorage. Open browser console to see logs.</p>
+                <div id="notification-logs" style="background: #f9fafb; padding: 1rem; border-radius: 8px; font-family: monospace; font-size: 0.875rem; max-height: 300px; overflow-y: auto;"></div>
+                <p style="margin-top: 1rem; font-size: 0.875rem; color: #6b7280;">Last 10 notifications displayed. Click "Clear Logs" button above to reset.</p>'
+    } %}
+
+  </div>
+{% endset %}
+
+{# Page wrapper #}
+<div class="page-wrapper">
+  
+  {# Header #}
+  {% include 'sdc_shoelace:header' with {
+    site_name: 'SDC Shoelace - JavaScript Demo',
+    show_nav_icon: true
+  } %}
+  
+  {# Main content #}
+  <main style="padding: 2rem 1rem;">
+    {% include 'sdc_shoelace:container' with {
+      variant: 'fluid',
+      padding: 'none',
+      content: demo_content
+    } %}
+  </main>
+  
+</div>
+
+{# Demo JavaScript #}
+<script>
+(function() {
+  'use strict';
+  
+  // Wait for DOM and Drupal behaviors to be ready
+  document.addEventListener('DOMContentLoaded', function() {
+    
+    // Show info notification
+    document.getElementById('show-info')?.addEventListener('click', function() {
+      // Use native API (or Drupal.notificationCard.show works too)
+      NotificationCard.show({
+        variant: 'info',
+        title: 'Information',
+        message: '<p>This is an informational message created with JavaScript.</p><p>Current time: ' + new Date().toLocaleTimeString() + '</p>',
+        dismissible: true
+      });
+    });
+    
+    // Show success notification
+    document.getElementById('show-success')?.addEventListener('click', function() {
+      NotificationCard.show({
+        variant: 'success',
+        title: 'Success!',
+        message: '<p>✅ Operation completed successfully!</p>',
+        dismissible: true,
+        duration: 5000  // Auto-dismiss after 5 seconds
+      });
+    });
+    
+    // Show warning notification
+    document.getElementById('show-warning')?.addEventListener('click', function() {
+      NotificationCard.show({
+        variant: 'warning',
+        title: 'Warning',
+        message: '<p>⚠️ Please review your settings before continuing.</p>',
+        dismissible: true
+      });
+    });
+    
+    // Show danger notification
+    document.getElementById('show-danger')?.addEventListener('click', function() {
+      NotificationCard.show({
+        variant: 'danger',
+        title: 'Error Occurred',
+        message: '<p>❌ An error has occurred. Please try again.</p><p><strong>Error code:</strong> ' + Math.floor(Math.random() * 1000) + '</p>',
+        dismissible: true
+      });
+    });
+    
+    // Show auto-dismiss notification
+    document.getElementById('show-auto-dismiss')?.addEventListener('click', function() {
+      NotificationCard.show({
+        variant: 'info',
+        title: 'Auto-dismiss in 3 seconds',
+        message: '<p>⏱️ This notification will automatically disappear...</p>',
+        dismissible: true,
+        duration: 3000
+      });
+    });
+    
+    // Show multiple notifications
+    document.getElementById('show-multiple')?.addEventListener('click', function() {
+      const messages = [
+        { variant: 'info', title: 'First notification', message: '<p>Message 1 of 3</p>' },
+        { variant: 'success', title: 'Second notification', message: '<p>Message 2 of 3</p>' },
+        { variant: 'warning', title: 'Third notification', message: '<p>Message 3 of 3</p>' }
+      ];
+      
+      messages.forEach(function(msg, index) {
+        setTimeout(function() {
+          NotificationCard.show({
+            variant: msg.variant,
+            title: msg.title,
+            message: msg.message,
+            dismissible: true,
+            duration: 5000
+          });
+        }, index * 500);  // Stagger by 500ms
+      });
+    });
+    
+    // Clear logs
+    document.getElementById('clear-logs')?.addEventListener('click', function() {
+      localStorage.removeItem('notificationLogs');
+      updateLogsDisplay();
+      NotificationCard.show({
+        variant: 'success',
+        title: 'Logs Cleared',
+        message: '<p>Notification logs have been cleared.</p>',
+        duration: 2000
+      });
+    });
+    
+    // Display logs
+    function updateLogsDisplay() {
+      const logs = JSON.parse(localStorage.getItem('notificationLogs') || '[]');
+      const container = document.getElementById('notification-logs');
+      if (container) {
+        if (logs.length === 0) {
+          container.innerHTML = '<em style="color: #9ca3af;">No logs yet. Trigger some notifications!</em>';
+        } else {
+          container.innerHTML = logs.slice(-10).reverse().map(function(log) {
+            return '<div style="margin-bottom: 0.5rem; padding: 0.5rem; background: white; border-radius: 4px;">' +
+                   '<strong style="color: ' + getVariantColor(log.variant) + ';">' + log.variant + '</strong> - ' +
+                   log.title + '<br>' +
+                   '<small style="color: #9ca3af;">' + new Date(log.timestamp).toLocaleString() + '</small>' +
+                   '</div>';
+          }).join('');
+        }
+      }
+    }
+    
+    function getVariantColor(variant) {
+      const colors = {
+        info: '#2563eb',
+        success: '#16a34a',
+        warning: '#d97706',
+        danger: '#dc2626'
+      };
+      return colors[variant] || colors.info;
+    }
+    
+    // Update logs display on page load and when notifications change
+    updateLogsDisplay();
+    setInterval(updateLogsDisplay, 1000);
+    
+  });
+})();
+</script>

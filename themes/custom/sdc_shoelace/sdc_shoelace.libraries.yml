@@ -2,3 +2,13 @@ global:
   css:
     theme:
       css/style.css: {}
+
+# Drupal integration for notification_card component
+notification-card-drupal:
+  js:
+    js/notification-card-drupal.js: {}
+  dependencies:
+    - core/drupal
+    - core/once
+    - sdc_shoelace/notification_card  # Native component
+
