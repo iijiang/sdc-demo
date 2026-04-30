@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.shoelace_alert
+    - field.storage.block_content.field_variant
+  module:
+    - options
+id: block_content.shoelace_alert.field_variant
+field_name: field_variant
+entity_type: block_content
+bundle: shoelace_alert
+label: Variant
+description: "Visual style of the alert."
+required: true
+translatable: false
+default_value:
+  - value: primary
+default_value_callback: ''
+settings: {  }
+field_type: list_string

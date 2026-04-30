@@ -1,0 +1,10 @@
+name: "Shoelace Blocks"
+type: module
+description: "Editor-facing block content types backed by Shoelace SDC components."
+package: "Shoelace SDC Demo"
+core_version_requirement: ^10.1 || ^11
+dependencies:
+  - drupal:block_content
+  - drupal:field
+  - drupal:options
+  - drupal:text
