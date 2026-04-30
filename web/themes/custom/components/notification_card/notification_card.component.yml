@@ -1,0 +1,45 @@
+id: sdc_shoelace:notification_card
+label: "Notification Card"
+description: A styled notification card with icon, title, message, and action button using Shoelace components
+props:
+    variant:
+      type: string
+      title: Variant
+      description: The notification type (info, success, warning, danger)
+      default: info
+      enum:
+        - info
+        - success
+        - warning
+        - danger
+    icon:
+      type: string
+      title: Icon
+      description: Shoelace icon name
+      default: info-circle
+    title:
+      type: string
+      title: Title
+      description: Notification title
+    message:
+      type: string
+      title: Message
+      description: Notification message content
+    dismissible:
+      type: boolean
+      title: Dismissible
+      description: Whether the notification can be dismissed
+      default: true
+    show_timestamp:
+      type: boolean
+      title: Show Timestamp
+      description: Show time/date of notification
+      default: false
+    timestamp:
+      type: string
+      title: Timestamp
+      description: Time text to display
+slots:
+  actions:
+    title: Action Buttons
+    description: Slot for action buttons (View, Dismiss, etc)

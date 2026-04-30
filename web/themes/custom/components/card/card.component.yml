@@ -1,0 +1,18 @@
+id: sdc_shoelace:card
+label: "Card"
+props:
+  header:
+    type: string
+    title: "Card Header"
+  footer:
+    type: string
+    title: "Card Footer"
+slots:
+  content:
+    title: "Main Content"
+  header:
+    title: "Header Slot"
+  footer:
+    title: "Footer Slot"
+  image:
+    title: "Image Slot"
