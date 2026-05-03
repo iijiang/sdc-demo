@@ -17,7 +17,10 @@ This recipe provides a custom block type for rendering Shoelace alerts with full
 ## Prerequisites
 
 - Drupal 11.2+
-- `sdc_shoelace` theme installed and enabled
+- **`sdc_shoelace` theme installed and enabled** (REQUIRED)
+  - The block template references `sdc_shoelace:alert` SDC component
+  - Install theme first: `drush theme:install sdc_shoelace -y`
+  - Set as default: `drush config:set system.theme default sdc_shoelace -y`
 - Layout Builder enabled for your content types
 
 ## Installation

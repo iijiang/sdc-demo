@@ -1,6 +1,9 @@
 name: 'Shoelace Alert Block'
 description: 'Provides a custom block type for rendering Shoelace alerts with Layout Builder integration'
 type: 'Content authoring'
+recipes:
+  # Ensure sdc_shoelace theme is available (if it has a recipe)
+  # - themes/custom/sdc_shoelace
 install:
   - shoelace_blocks
 config:

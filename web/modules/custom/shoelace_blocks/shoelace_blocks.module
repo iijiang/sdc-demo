@@ -5,6 +5,42 @@
  * Bridges block_content bundles to Shoelace SDC components.
  */
 
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_requirements().
+ */
+function shoelace_blocks_requirements(string $phase): array {
+  $requirements = [];
+  
+  if ($phase === 'runtime') {
+    $theme_handler = \Drupal::service('theme_handler');
+    $sdc_shoelace_installed = $theme_handler->themeExists('sdc_shoelace');
+    
+    if (!$sdc_shoelace_installed) {
+      $requirements['shoelace_blocks_theme'] = [
+        'title' => t('Shoelace Blocks'),
+        'value' => t('sdc_shoelace theme not found'),
+        'description' => t('The Shoelace Blocks module requires the sdc_shoelace theme to be installed. Block templates reference sdc_shoelace:* SDC components.'),
+        'severity' => REQUIREMENT_ERROR,
+      ];
+    }
+    else {
+      $default_theme = \Drupal::config('system.theme')->get('default');
+      if ($default_theme !== 'sdc_shoelace') {
+        $requirements['shoelace_blocks_theme'] = [
+          'title' => t('Shoelace Blocks'),
+          'value' => t('sdc_shoelace theme installed but not active'),
+          'description' => t('The sdc_shoelace theme is installed but not set as the default theme. Shoelace components may not render correctly.'),
+          'severity' => REQUIREMENT_WARNING,
+        ];
+      }
+    }
+  }
+  
+  return $requirements;
+}
+
 /**
  * Implements hook_theme_suggestions_block_alter().
  *
@@ -13,9 +49,13 @@
  */
 function shoelace_blocks_theme_suggestions_block_alter(array &$suggestions, array $variables): void {
   $element = $variables['elements'] ?? [];
-  if (($element['#base_plugin_id'] ?? '') !== 'block_content') {
+  $base_plugin_id = $element['#base_plugin_id'] ?? '';
+  
+  // Handle both regular block_content blocks and inline_block from Layout Builder
+  if (!in_array($base_plugin_id, ['block_content', 'inline_block'], TRUE)) {
     return;
   }
+  
   $block_content = $element['content']['#block_content'] ?? NULL;
   if (!$block_content) {
     return;

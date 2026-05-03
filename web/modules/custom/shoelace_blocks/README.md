@@ -9,12 +9,33 @@ place as many instances as they want via the Block Library or Layout Builder.
 
 This module includes a **Drupal recipe** at `recipes/shoelace_alert/` that packages the complete Shoelace Alert block configuration. You can apply it to quickly set up the block type in any Drupal site.
 
+**⚠️ Important:** This module requires the **`sdc_shoelace` theme** to be installed and enabled. Block templates reference `sdc_shoelace:*` SDC components.
+
 **Apply the recipe:**
 ```bash
+# 1. Install and enable the sdc_shoelace theme first
+drush theme:install sdc_shoelace -y
+drush config:set system.theme default sdc_shoelace -y
+
+# 2. Apply the recipe
 drush recipe web/modules/custom/shoelace_blocks/recipes/shoelace_alert
 ```
 
 Or install the module normally (see below).
+
+## 🔗 Dependencies
+
+**Required:**
+- `sdc_shoelace` theme - Provides the SDC components that block templates render
+- `block_content` module (Drupal core)
+- `field` module (Drupal core)
+- `options` module (Drupal core) 
+- `text` module (Drupal core)
+
+**Recommended:**
+- `layout_builder` module (Drupal core) - For inline block placement in layouts
+
+The module will display warnings on the status report page if the `sdc_shoelace` theme is not installed or enabled.
 
 ## What it ships
 
