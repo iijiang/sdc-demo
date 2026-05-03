@@ -25,15 +25,7 @@
       </div>
     {% endif %}
 
-    {# Page Title in Card (optional) #}
-    {% if title %}
-      {% include 'sdc_shoelace:card' with {
-        header: title,
-        content: ''
-      } %}
-    {% endif %}
-
-    {# Main Content #}
+    {# Main Content (title is handled by node template) #}
     <div class="main-content">
       {{ page.content }}
     </div>

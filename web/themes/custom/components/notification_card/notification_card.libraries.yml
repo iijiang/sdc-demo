@@ -1,4 +1,0 @@
-notification_card:
-  js:
-    notification_card.js: {}
-  # No dependencies - pure native JS!

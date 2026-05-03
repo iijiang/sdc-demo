@@ -69,12 +69,23 @@
 {# NOW render the article with all variables defined #}
 <article{{ attributes.addClass('node', 'node--type-' ~ node.bundle|clean_class) }}>
   
-  {% include 'sdc_shoelace:card' with {
-    slots: {
-      header: node_header,
-      footer: node_footer
-    },
-    content: node_content
-  } %}
+  {# For Layout Builder pages, render content directly without card wrapper #}
+  {% if layout_builder_enabled or node.bundle in ['page', 'article'] %}
+    {# Still show the title for Layout Builder pages #}
+    {% if page %}
+      <h1{{ title_attributes.addClass('node-title') }}>
+        {{ label }}
+      </h1>
+    {% endif %}
+    {{ content }}
+  {% else %}
+    {% include 'sdc_shoelace:card' with {
+      slots: {
+        header: node_header,
+        footer: node_footer
+      },
+      content: node_content
+    } %}
+  {% endif %}
 
 </article>

@@ -1,6 +1,0 @@
-id: sdc_shoelace:divider
-label: "Divider"
-props:
-  vertical:
-    type: boolean
-    default: false
