@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.shoelace_alert
+    - field.storage.block_content.field_message
+  module:
+    - text
+id: block_content.shoelace_alert.field_message
+field_name: field_message
+entity_type: block_content
+bundle: shoelace_alert
+label: Message
+description: "The body of the alert. HTML allowed via the chosen text format."
+required: true
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

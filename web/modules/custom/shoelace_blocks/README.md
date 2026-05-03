@@ -5,6 +5,17 @@ This module is **Path A** of the "Editorial Experience" deck: map a custom
 block bundle's fields to a Single Directory Component once, then let editors
 place as many instances as they want via the Block Library or Layout Builder.
 
+## 📦 Recipe Available
+
+This module includes a **Drupal recipe** at `recipes/shoelace_alert/` that packages the complete Shoelace Alert block configuration. You can apply it to quickly set up the block type in any Drupal site.
+
+**Apply the recipe:**
+```bash
+drush recipe web/modules/custom/shoelace_blocks/recipes/shoelace_alert
+```
+
+Or install the module normally (see below).
+
 ## What it ships
 
 A `shoelace_alert` block content type with four fields:

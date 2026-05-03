@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.shoelace_alert
+    - field.storage.block_content.field_icon
+id: block_content.shoelace_alert.field_icon
+field_name: field_icon
+entity_type: block_content
+bundle: shoelace_alert
+label: Icon
+description: "Optional Shoelace icon name (e.g. info-circle, exclamation-triangle, check2-circle). Leave empty for none."
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

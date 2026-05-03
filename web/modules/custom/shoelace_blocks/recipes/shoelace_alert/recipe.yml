@@ -1,0 +1,21 @@
+name: 'Shoelace Alert Block'
+description: 'Provides a custom block type for rendering Shoelace alerts with Layout Builder integration'
+type: 'Content authoring'
+install:
+  - shoelace_blocks
+config:
+  import:
+    block_content:
+      - block_content.type.shoelace_alert
+    field:
+      - field.storage.block_content.field_variant
+      - field.storage.block_content.field_icon
+      - field.storage.block_content.field_message
+      - field.storage.block_content.field_closable
+      - field.field.block_content.shoelace_alert.field_variant
+      - field.field.block_content.shoelace_alert.field_icon
+      - field.field.block_content.shoelace_alert.field_message
+      - field.field.block_content.shoelace_alert.field_closable
+    core:
+      - core.entity_form_display.block_content.shoelace_alert.default
+      - core.entity_view_display.block_content.shoelace_alert.default

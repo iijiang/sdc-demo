@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.shoelace_alert
+    - field.field.block_content.shoelace_alert.field_closable
+    - field.field.block_content.shoelace_alert.field_icon
+    - field.field.block_content.shoelace_alert.field_message
+    - field.field.block_content.shoelace_alert.field_variant
+id: block_content.shoelace_alert.default
+targetEntityType: block_content
+bundle: shoelace_alert
+mode: default
+content: {  }
+hidden:
+  field_closable: true
+  field_icon: true
+  field_message: true
+  field_variant: true
