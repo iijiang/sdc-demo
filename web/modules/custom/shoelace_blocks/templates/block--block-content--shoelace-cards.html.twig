@@ -1,0 +1,57 @@
+{#
+/**
+ * @file
+ * Template for Shoelace Cards block.
+ *
+ * Renders up to 4 cards in a configurable grid layout.
+ */
+#}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  
+  {% set block_entity = elements.content['#block_content'] %}
+  {% set cards_per_row = block_entity.field_cards_per_row.0.value|default('3') %}
+  
+  {# Build array of cards from fields #}
+  {% set cards = [] %}
+  {% for i in 1..4 %}
+    {% set header_field = 'field_card_' ~ i ~ '_header' %}
+    {% set content_field = 'field_card_' ~ i ~ '_content' %}
+    {% set image_field = 'field_card_' ~ i ~ '_image' %}
+    
+    {% set header = attribute(block_entity, header_field).0.value|default('') %}
+    {% set content_text = attribute(block_entity, content_field).0.value|default('') %}
+    {% set image_entity = attribute(block_entity, image_field).0.entity ?? null %}
+    
+    {# Only include card if it has header or content #}
+    {% if header or content_text %}
+      {% set card_data = {
+        'header': header,
+        'content': content_text,
+        'image': image_entity,
+      } %}
+      {% set cards = cards|merge([card_data]) %}
+    {% endif %}
+  {% endfor %}
+  
+  {# Render cards in grid if we have any #}
+  {% if cards|length > 0 %}
+    <div class="shoelace-cards-grid" style="display: grid; grid-template-columns: repeat({{ cards_per_row }}, 1fr); gap: 1.5rem;">
+      {% for card in cards %}
+        <div class="shoelace-card-wrapper">
+          {% include 'sdc_shoelace:card' with {
+            slots: {
+              header: card.header,
+              image: card.image ? '<img src="' ~ file_url(card.image.uri.value) ~ '" alt="' ~ (card.image.alt ?? '') ~ '" />' : null,
+            },
+            content: card.content,
+          } only %}
+        </div>
+      {% endfor %}
+    </div>
+  {% else %}
+    <p><em>No cards have been configured yet. Add content to at least one card.</em></p>
+  {% endif %}
+  
+  {{ title_suffix }}
+</div>

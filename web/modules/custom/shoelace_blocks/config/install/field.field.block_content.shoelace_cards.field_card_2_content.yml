@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.shoelace_cards
+    - field.storage.block_content.field_card_2_content
+  module:
+    - text
+id: block_content.shoelace_cards.field_card_2_content
+field_name: field_card_2_content
+entity_type: block_content
+bundle: shoelace_cards
+label: 'Card 2 Content'
+description: 'Main content for card 2'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

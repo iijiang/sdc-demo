@@ -1,0 +1,37 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.shoelace_cards
+    - field.field.block_content.shoelace_cards.field_cards_per_row
+    - field.field.block_content.shoelace_cards.field_card_1_header
+    - field.field.block_content.shoelace_cards.field_card_1_content
+    - field.field.block_content.shoelace_cards.field_card_1_image
+    - field.field.block_content.shoelace_cards.field_card_2_header
+    - field.field.block_content.shoelace_cards.field_card_2_content
+    - field.field.block_content.shoelace_cards.field_card_2_image
+    - field.field.block_content.shoelace_cards.field_card_3_header
+    - field.field.block_content.shoelace_cards.field_card_3_content
+    - field.field.block_content.shoelace_cards.field_card_3_image
+    - field.field.block_content.shoelace_cards.field_card_4_header
+    - field.field.block_content.shoelace_cards.field_card_4_content
+    - field.field.block_content.shoelace_cards.field_card_4_image
+id: block_content.shoelace_cards.default
+targetEntityType: block_content
+bundle: shoelace_cards
+mode: default
+content: {  }
+hidden:
+  field_cards_per_row: true
+  field_card_1_header: true
+  field_card_1_content: true
+  field_card_1_image: true
+  field_card_2_header: true
+  field_card_2_content: true
+  field_card_2_image: true
+  field_card_3_header: true
+  field_card_3_content: true
+  field_card_3_image: true
+  field_card_4_header: true
+  field_card_4_content: true
+  field_card_4_image: true

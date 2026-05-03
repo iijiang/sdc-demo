@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.shoelace_cards
+    - field.storage.block_content.field_cards_per_row
+  module:
+    - options
+id: block_content.shoelace_cards.field_cards_per_row
+field_name: field_cards_per_row
+entity_type: block_content
+bundle: shoelace_cards
+label: 'Cards per row'
+description: 'Choose how many cards to display per row'
+required: true
+translatable: false
+default_value:
+  - value: '3'
+default_value_callback: ''
+settings: {  }
+field_type: list_string

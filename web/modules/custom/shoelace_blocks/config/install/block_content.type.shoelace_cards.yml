@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: shoelace_cards
+label: 'Shoelace Cards'
+revision: 0
+description: 'A block containing up to 4 cards in a configurable grid layout (1-4 cards per row)'

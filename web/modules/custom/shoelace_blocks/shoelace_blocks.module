@@ -71,11 +71,18 @@ function shoelace_blocks_theme_suggestions_block_alter(array &$suggestions, arra
  * module (themes can still override it again).
  */
 function shoelace_blocks_theme(): array {
+  $module_path = \Drupal::service('extension.list.module')->getPath('shoelace_blocks') . '/templates';
+  
   return [
     'block__block_content__shoelace_alert' => [
       'base hook' => 'block',
       'template' => 'block--block-content--shoelace-alert',
-      'path' => \Drupal::service('extension.list.module')->getPath('shoelace_blocks') . '/templates',
+      'path' => $module_path,
+    ],
+    'block__block_content__shoelace_cards' => [
+      'base hook' => 'block',
+      'template' => 'block--block-content--shoelace-cards',
+      'path' => $module_path,
     ],
   ];
 }
