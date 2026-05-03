@@ -1,0 +1,20 @@
+id: sdc_shoelace:container
+label: "Container"
+props:
+  variant:
+    type: string
+    enum:
+      - fluid
+      - fixed
+    default: "fixed"
+  padding:
+    type: string
+    enum:
+      - none
+      - small
+      - medium
+      - large
+    default: "medium"
+slots:
+  content:
+    title: "Content"

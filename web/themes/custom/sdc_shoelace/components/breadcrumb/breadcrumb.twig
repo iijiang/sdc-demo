@@ -1,0 +1,7 @@
+<sl-breadcrumb>
+  {% for item in items %}
+    <sl-breadcrumb-item {% if item.href %}href="{{ item.href }}"{% endif %}>
+      {{ item.label }}
+    </sl-breadcrumb-item>
+  {% endfor %}
+</sl-breadcrumb>

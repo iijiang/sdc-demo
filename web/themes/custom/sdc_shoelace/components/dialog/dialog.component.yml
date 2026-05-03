@@ -1,0 +1,17 @@
+id: sdc_shoelace:dialog
+label: "Dialog/Modal"
+props:
+  label:
+    type: string
+    default: "Dialog"
+  open:
+    type: boolean
+    default: false
+  no_header:
+    type: boolean
+    default: false
+slots:
+  content:
+    title: "Dialog Content"
+  footer:
+    title: "Footer Slot"

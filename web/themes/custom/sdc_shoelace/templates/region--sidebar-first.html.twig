@@ -1,0 +1,32 @@
+{#
+/**
+ * @file
+ * Sidebar First Region with Shoelace Menu.
+ */
+#}
+{% if content %}
+  <aside{{ attributes.addClass('region', 'region-sidebar-first') }}>
+    {% include 'sdc_shoelace:menu' with {
+      variant: 'tree',
+      items: [
+        {
+          label: 'Navigation',
+          icon: 'folder',
+          expanded: true,
+          children: [
+            { label: 'Home', icon: 'house', href: '/' },
+            { label: 'About', icon: 'info-circle', href: '/about' },
+            { label: 'Services', icon: 'briefcase', href: '/services' },
+            { label: 'Contact', icon: 'envelope', href: '/contact' }
+          ]
+        }
+      ]
+    } %}
+    
+    {% include 'sdc_shoelace:divider' %}
+    
+    <div style="padding: 1rem;">
+      {{ content }}
+    </div>
+  </aside>
+{% endif %}

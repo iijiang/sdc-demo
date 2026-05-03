@@ -1,0 +1,13 @@
+<sl-dialog 
+  label="{{ label }}"
+  {% if open %}open{% endif %}
+  {% if no_header %}no-header{% endif %}
+>
+  {{ content|raw }}
+  
+  {% if slots.footer %}
+    <div slot="footer">
+      {{ slots.footer|raw }}
+    </div>
+  {% endif %}
+</sl-dialog>

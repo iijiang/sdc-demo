@@ -1,0 +1,25 @@
+<header class="site-header">
+  <div class="header-container">
+    {% if show_nav_icon %}
+      <div class="header-nav-icon">
+        {% if slots.nav_icon %}
+          {{ slots.nav_icon|raw }}
+        {% else %}
+          <sl-button variant="text" size="large">
+            <sl-icon name="list"></sl-icon>
+          </sl-button>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    <div class="header-branding">
+      <h1 class="site-name">{{ site_name }}</h1>
+    </div>
+    
+    {% if slots.actions %}
+      <div class="header-actions">
+  {{ slots.actions|raw }}
+      </div>
+    {% endif %}
+  </div>
+</header>
