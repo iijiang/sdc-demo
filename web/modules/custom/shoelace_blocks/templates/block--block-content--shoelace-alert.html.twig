@@ -11,19 +11,29 @@
  * Available variables (Drupal core):
  * - content: the rendered field children (unused here; we read from the entity).
  * - elements: the renderable array; elements.content['#block_content'] is the entity.
+ * - title_prefix: prefix content (includes contextual links for Layout Builder).
+ * - title_suffix: suffix content.
+ * - attributes: HTML attributes for the container element.
  */
 #}
-{% set block_entity = elements.content['#block_content'] %}
-
-{% set variant = block_entity.field_variant.0.value|default('primary') %}
-{% set icon = block_entity.field_icon.0.value|default('') %}
-{% set closable = block_entity.field_closable.0.value ? true : false %}
-{% set message_value = block_entity.field_message.0.value|default('') %}
-
-{% include 'sdc_shoelace:alert' with {
-  variant: variant,
-  closable: closable,
-  open: true,
-  icon: icon,
-  content: message_value,
-} only %}
+{# Wrap in a container to properly display contextual links #}
+<div{{ attributes }}>
+  {{ title_prefix }}
+  
+  {% set block_entity = elements.content['#block_content'] %}
+  
+  {% set variant = block_entity.field_variant.0.value|default('primary') %}
+  {% set icon = block_entity.field_icon.0.value|default('') %}
+  {% set closable = block_entity.field_closable.0.value ? true : false %}
+  {% set message_value = block_entity.field_message.0.value|default('') %}
+  
+  {% include 'sdc_shoelace:alert' with {
+    variant: variant,
+    closable: closable,
+    open: true,
+    icon: icon,
+    content: message_value,
+  } only %}
+  
+  {{ title_suffix }}
+</div>
