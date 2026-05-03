@@ -1,0 +1,53 @@
+{#
+/**
+ * @file
+ * Template for Shoelace Card block.
+ *
+ * Renders a single card with header, image, content, and footer.
+ * Use Layout Builder sections to arrange multiple cards in columns.
+ *
+ * Available variables:
+ * - elements: Renderable array; elements.content['#block_content'] is the entity
+ * - title_prefix: Prefix content (includes contextual links)
+ * - title_suffix: Suffix content
+ * - attributes: HTML attributes for the container element
+ */
+#}
+<div{{ attributes }} style="max-width: 100%; height: 100%;">
+  {{ title_prefix }}
+  
+  {% set block_entity = elements.content['#block_content'] %}
+  
+  {# Extract field values #}
+  {% set header = block_entity.field_header.0.value|default('') %}
+  {% set content_text = block_entity.field_content.0.value|default('') %}
+  {% set footer = block_entity.field_footer.0.value|default('') %}
+  {% set image_entity = block_entity.field_image.0.entity ?? null %}
+  
+  <style>
+    /* Ensure Shoelace cards are responsive and fill their container */
+    sl-card {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      flex-direction: column;
+    }
+    /* Make image responsive */
+    sl-card img {
+      width: 100%;
+      height: auto;
+      display: block;
+    }
+  </style>
+  
+  {% include 'sdc_shoelace:card' with {
+    slots: {
+      header: header ? header : null,
+      image: image_entity ? '<img src="' ~ file_url(image_entity.uri.value) ~ '" alt="' ~ (image_entity.alt ?? '') ~ '" />' : null,
+      footer: footer ? footer : null,
+    },
+    content: content_text,
+  } only %}
+  
+  {{ title_suffix }}
+</div>

@@ -1,0 +1,20 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.shoelace_card
+    - field.storage.block_content.field_content
+  module:
+    - text
+id: block_content.shoelace_card.field_content
+field_name: field_content
+entity_type: block_content
+bundle: shoelace_card
+label: 'Content'
+description: 'Main card content (body text)'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: text_long

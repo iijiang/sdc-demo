@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.shoelace_card
+    - field.storage.block_content.field_header
+id: block_content.shoelace_card.field_header
+field_name: field_header
+entity_type: block_content
+bundle: shoelace_card
+label: 'Header'
+description: 'Card header text (appears at top)'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

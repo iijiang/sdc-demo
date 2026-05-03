@@ -1,0 +1,18 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.shoelace_card
+    - field.storage.block_content.field_footer
+id: block_content.shoelace_card.field_footer
+field_name: field_footer
+entity_type: block_content
+bundle: shoelace_card
+label: 'Footer'
+description: 'Card footer text (appears at bottom)'
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

@@ -79,6 +79,11 @@ function shoelace_blocks_theme(): array {
       'template' => 'block--block-content--shoelace-alert',
       'path' => $module_path,
     ],
+    'block__block_content__shoelace_card' => [
+      'base hook' => 'block',
+      'template' => 'block--block-content--shoelace-card',
+      'path' => $module_path,
+    ],
     'block__block_content__shoelace_cards' => [
       'base hook' => 'block',
       'template' => 'block--block-content--shoelace-cards',

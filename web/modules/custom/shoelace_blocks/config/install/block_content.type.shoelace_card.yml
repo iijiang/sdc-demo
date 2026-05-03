@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: shoelace_card
+label: 'Shoelace Card'
+revision: 0
+description: 'A single card component with header, content, image, and footer. Use Layout Builder sections to arrange multiple cards in columns.'

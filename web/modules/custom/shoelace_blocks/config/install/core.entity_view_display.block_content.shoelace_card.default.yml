@@ -1,0 +1,19 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.shoelace_card
+    - field.field.block_content.shoelace_card.field_header
+    - field.field.block_content.shoelace_card.field_content
+    - field.field.block_content.shoelace_card.field_footer
+    - field.field.block_content.shoelace_card.field_image
+id: block_content.shoelace_card.default
+targetEntityType: block_content
+bundle: shoelace_card
+mode: default
+content: {  }
+hidden:
+  field_header: true
+  field_content: true
+  field_footer: true
+  field_image: true
