@@ -1,0 +1,21 @@
+langcode: en
+status: true
+dependencies:
+  config:
+    - block_content.type.shoelace_alert
+    - field.storage.block_content.field_closable
+id: block_content.shoelace_alert.field_closable
+field_name: field_closable
+entity_type: block_content
+bundle: shoelace_alert
+label: Closable
+description: "Show a close button so visitors can dismiss the alert."
+required: false
+translatable: false
+default_value:
+  - value: 0
+default_value_callback: ''
+settings:
+  on_label: Yes
+  off_label: No
+field_type: boolean

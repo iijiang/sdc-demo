@@ -1,0 +1,33 @@
+{#
+/**
+ * @file
+ * Renders a "Shoelace Alert" custom block via the sdc_shoelace:alert component.
+ *
+ * The view display hides every field; we read raw values from the block_content
+ * entity and pass them as props/slots to the SDC component. This is Path A of
+ * the editorial-experience integration: editors fill in fields, developers map
+ * them to a component once.
+ *
+ * Available variables (Drupal core):
+ * - content: the rendered field children (unused here; we read from the entity).
+ * - elements: the renderable array; elements['#block_content'] is the entity.
+ */
+#}
+{% set block_entity = elements['#block_content'] %}
+
+{% set variant = block_entity.field_variant.value|default('primary') %}
+{% set icon = block_entity.field_icon.value %}
+{% set closable = block_entity.field_closable.value ? true : false %}
+
+{# Render the message field through its formatter so text format / filters apply. #}
+{% set message_markup %}
+  {{ block_entity.field_message.0|view({ type: 'text_default', label: 'hidden' }) }}
+{% endset %}
+
+{% include 'sdc_shoelace:alert' with {
+  variant: variant,
+  closable: closable,
+  open: true,
+  icon: icon,
+  content: message_markup,
+} only %}

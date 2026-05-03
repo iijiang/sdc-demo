@@ -1,0 +1,7 @@
+langcode: en
+status: true
+dependencies: {  }
+id: shoelace_alert
+label: "Shoelace Alert"
+revision: false
+description: "An alert block rendered with the Shoelace <sl-alert> SDC component."
