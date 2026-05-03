@@ -36,7 +36,24 @@
   
   {# Render cards in grid if we have any #}
   {% if cards|length > 0 %}
-    <div class="shoelace-cards-grid" style="display: grid; grid-template-columns: repeat({{ cards_per_row }}, 1fr); gap: 1.5rem;">
+    <div class="shoelace-cards-grid shoelace-cards-grid--{{ cards_per_row }}" style="display: grid; gap: 1.5rem; grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));">
+      <style>
+        /* Responsive grid that respects cards_per_row setting on larger screens */
+        @media (min-width: 768px) {
+          .shoelace-cards-grid--1 { grid-template-columns: 1fr; }
+          .shoelace-cards-grid--2 { grid-template-columns: repeat(2, 1fr); }
+          .shoelace-cards-grid--3 { grid-template-columns: repeat(3, 1fr); }
+          .shoelace-cards-grid--4 { grid-template-columns: repeat(4, 1fr); }
+        }
+        /* Mobile: always 1 column */
+        @media (max-width: 767px) {
+          .shoelace-cards-grid { grid-template-columns: 1fr !important; }
+        }
+        /* Ensure sl-card takes full width */
+        .shoelace-card-wrapper sl-card {
+          width: 100%;
+        }
+      </style>
       {% for card in cards %}
         <div class="shoelace-card-wrapper">
           {% include 'sdc_shoelace:card' with {

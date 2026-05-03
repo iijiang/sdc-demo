@@ -17,7 +17,7 @@
  */
 #}
 {# Wrap in a container to properly display contextual links #}
-<div{{ attributes }}>
+<div{{ attributes }} style="max-width: 100%;">
   {{ title_prefix }}
   
   {% set block_entity = elements.content['#block_content'] %}
@@ -26,6 +26,15 @@
   {% set icon = block_entity.field_icon.0.value|default('') %}
   {% set closable = block_entity.field_closable.0.value ? true : false %}
   {% set message_value = block_entity.field_message.0.value|default('') %}
+  
+  <style>
+    /* Ensure Shoelace alerts are responsive */
+    sl-alert {
+      width: 100%;
+      max-width: 100%;
+      box-sizing: border-box;
+    }
+  </style>
   
   {% include 'sdc_shoelace:alert' with {
     variant: variant,
